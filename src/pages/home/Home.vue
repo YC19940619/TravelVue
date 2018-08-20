@@ -11,5 +11,8 @@ export default {
 </script>
 
 <style scoped>
-
+  .iconfont{
+    width: 1rem;
+    /*font-size:10rem*/
+  }
 </style>
