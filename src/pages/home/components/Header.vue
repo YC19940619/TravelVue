@@ -2,12 +2,15 @@
     <div class="header iconfont">
       <div class="header-left">&#xe624;</div>
       <div class="header-search"><span class="header-search-icon">&#xe632;</span><input class="header-search-input" placeholder="输入城市/景点/游玩/主题"/></div>
-      <div class="header-right">城市<span class="arrow-icon">&#xe600;</span></div>
+      <div class="header-right">{{city}}<span class="arrow-icon">&#xe600;</span></div>
     </div>
 </template>
 <script>
 export default {
-  name: 'HomeHeader'
+  name: 'HomeHeader',
+  props: {
+    city: String
+  }
 }
 </script>
 <style lang="stylus" scoped>
