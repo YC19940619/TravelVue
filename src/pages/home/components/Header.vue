@@ -2,7 +2,9 @@
     <div class="header iconfont">
       <div class="header-left">&#xe624;</div>
       <div class="header-search"><span class="header-search-icon">&#xe632;</span><input class="header-search-input" placeholder="输入城市/景点/游玩/主题"/></div>
-      <div class="header-right">{{city}}<span class="arrow-icon">&#xe600;</span></div>
+      <router-link to="/city">
+        <div class="header-right">{{city}}<span class="arrow-icon">&#xe600;</span></div>
+      </router-link>
     </div>
 </template>
 <script>
@@ -17,14 +19,14 @@ export default {
   @import "~styles/varibles.styl"
   .header
     width:100%;
-    line-height:.86rem;
+    line-height:$headerHeight;
     display:flex;
     background:$bgColor;
     color: #fff;
     font-size 0.28rem
     .header-left
       width:.64rem;
-      height:.86rem;
+      height:$headerHeight;
       text-align:center;
       font-weight:bold;
     .header-search
@@ -46,8 +48,9 @@ export default {
         text-align:center
     .header-right
       width:1.24rem;
-      height:.86rem;
+      height:$headerHeight;
       text-align:center;
+      color: #fff
       .arrow-icon
         margin-left:.1rem
 </style>
