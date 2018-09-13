@@ -2,8 +2,12 @@
   <div>
     <city-header></city-header>
     <city-search></city-search>
-    <city-list :citys="citys" :hotcitys="hotcitys"></city-list>
-    <city-alphabet :citys="citys"></city-alphabet>
+    <city-list :letter="letter" :citys="citys" :hotcitys="hotcitys"></city-list>
+    <city-alphabet
+      :citys="citys"
+      @cityChange="handleCityChange"
+    >
+    </city-alphabet>
   </div>
 </template>
 
@@ -24,13 +28,17 @@ export default {
   data () {
     return {
       citys: {},
-      hotcitys: []
+      hotcitys: [],
+      letter: ''
     }
   },
   mounted () {
     this.getCityInfo()
   },
   methods: {
+    handleCityChange (letter) {
+      this.letter = letter
+    },
     getCityInfo () {
       axios.get('/api/static/mock/city.json')
         .then(this.getCityInfoSucc)
