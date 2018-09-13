@@ -19,7 +19,7 @@ export default {
     .search-input
       box-sizing: border-box;
       padding:0 0.1rem;
-      width:100%
+      width:100%;
       height:.64rem;
       border-radius:0.04rem;
       text-align: center;
