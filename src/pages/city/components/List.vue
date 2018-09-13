@@ -12,47 +12,17 @@
       <div class="area">
         <div class="title border-topbottom">热门城市</div>
         <div class="button-list">
-          <div class="button-wapper">
-            <div class="button">北京</div>
-          </div>
-          <div class="button-wapper">
-            <div class="button">西安</div>
-          </div>
-          <div class="button-wapper">
-            <div class="button">三亚</div>
-          </div>
-          <div class="button-wapper">
-            <div class="button">四川</div>
-          </div>
-          <div class="button-wapper">
-            <div class="button">秦皇岛</div>
-          </div>
-          <div class="button-wapper">
-            <div class="button">贵州</div>
-          </div>
-          <div class="button-wapper">
-            <div class="button">长春</div>
-          </div>
-          <div class="button-wapper">
-            <div class="button">五里营</div>
+          <div class="button-wapper" v-for="item in hotcitys" :key="item.id">
+            <div class="button">{{item.name}}</div>
           </div>
         </div>
       </div>
-      <div class="area">
-        <div class="title border-topbottom">A</div>
+      <div class="area" v-for="(item, key) in citys" :key="key">
+        <div class="title border-topbottom">{{key}}</div>
         <div class="city-list">
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
-          <div class="item border-bottom">阿拉尔</div>
+          <div class="item border-bottom" v-for="value in item" :key="value.id">
+            {{value.name}}
+          </div>
         </div>
       </div>
     </div>
@@ -63,6 +33,10 @@
 import Bescroll from 'better-scroll'
 export default {
   name: 'CityList',
+  props: {
+    citys: Object,
+    hotcitys: Array
+  },
   mounted () {
     this.scroll = new Bescroll(this.$refs.wapper)
   }
