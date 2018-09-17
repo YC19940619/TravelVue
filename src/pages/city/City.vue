@@ -1,7 +1,7 @@
 <template>
   <div>
     <city-header @domHeight="getHeaderHeight"></city-header>
-    <city-search @domHeight="getSearchHeight"></city-search>
+    <city-search @domHeight="getSearchHeight" :citys="citys"></city-search>
     <city-list :letter="letter" :citys="citys" :hotcitys="hotcitys"></city-list>
     <city-alphabet
       :citys="citys"
