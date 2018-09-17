@@ -1,10 +1,13 @@
 <template>
-    <div class="list">
+    <div class="list" ref="list">
       <div class="letter"
-         v-for="(item , key) of citys"
-         :key="key"
-         :ref="key"
-         @click="handleLetterClick"
+           v-for="(item , key) of citys"
+           :key="key"
+           :ref="key"
+           @click="handleLetterClick"
+           @touchstart = "touchLetterStart"
+           @touchmove = "touchLetterMove"
+           @touchend = "touchLetterEnd"
       >
         {{key}}
       </div>
@@ -15,11 +18,40 @@
 export default {
   name: 'CityAlphabet',
   props: {
-    citys: Object
+    citys: Object,
+    headerheight: Number,
+    searchheight: Number
+  },
+  data () {
+    return {
+      letterAtop: 0,
+      timer: null
+    }
+  },
+  updated () {
+    this.letterAtop = this.$refs['A'][0].offsetTop
   },
   methods: {
     handleLetterClick (e) {
       this.$emit('cityChange', e.target.innerText)
+    },
+    touchLetterStart (e) {
+    },
+    touchLetterMove (e) {
+      let chagneY = e.targetTouches[0].pageY - this.letterAtop - this.headerheight - this.searchheight
+      if (chagneY > 0 && chagneY < this.$refs['list'].offsetHeight) {
+        if (this.timer) {
+          clearTimeout(this.timer)
+        }
+        this.timer = setTimeout(() => {
+          let letterHeight = this.$refs['A'][0].offsetHeight
+          let index = Math.floor(chagneY / letterHeight)
+          let letterText = document.getElementsByClassName('letter')[index].innerText
+          this.$emit('cityChange', letterText)
+        }, 16)
+      }
+    },
+    touchLetterEnd (e) {
     }
   }
 }

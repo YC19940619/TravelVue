@@ -1,11 +1,14 @@
 <template>
-  <div class="search">
+  <div class="search" ref="search">
     <input class="search-input" type="text" placeholder="输入城市或拼音"/>
   </div>
 </template>
 <script>
 export default {
-  name: 'CitySearch'
+  name: 'CitySearch',
+  mounted () {
+    this.$emit('domHeight', this.$refs['search'].offsetHeight)
+  }
 }
 </script>
 <style lang="stylus" scoped>

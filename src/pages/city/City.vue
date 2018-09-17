@@ -1,10 +1,12 @@
 <template>
   <div>
-    <city-header></city-header>
-    <city-search></city-search>
+    <city-header @domHeight="getHeaderHeight"></city-header>
+    <city-search @domHeight="getSearchHeight"></city-search>
     <city-list :letter="letter" :citys="citys" :hotcitys="hotcitys"></city-list>
     <city-alphabet
       :citys="citys"
+      :headerheight="headerheight"
+      :searchheight="searchheight"
       @cityChange="handleCityChange"
     >
     </city-alphabet>
@@ -29,7 +31,9 @@ export default {
     return {
       citys: {},
       hotcitys: [],
-      letter: ''
+      letter: '',
+      headerheight: 0,
+      searchheight: 0
     }
   },
   mounted () {
@@ -47,6 +51,12 @@ export default {
       res = res.data
       this.citys = res.data.citys
       this.hotcitys = res.data.hotcitys
+    },
+    getHeaderHeight (height) {
+      this.headerheight = height
+    },
+    getSearchHeight (height) {
+      this.searchheight = height
     }
   }
 }

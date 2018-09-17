@@ -1,5 +1,5 @@
 <template>
-    <div class="header iconfont">
+    <div class="header iconfont" ref="header">
       城市选择
       <div class="header-left" @click="goBack">&#xe624;</div>
     </div>
@@ -7,6 +7,9 @@
 <script>
 export default {
   name: 'CityHeader',
+  mounted () {
+    this.$emit('domHeight', this.$refs['header'].offsetHeight)
+  },
   methods: {
     goBack () {
       window.history.length > 1
