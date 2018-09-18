@@ -3,15 +3,17 @@
       <div class="header-left">&#xe624;</div>
       <div class="header-search"><span class="header-search-icon">&#xe632;</span><input class="header-search-input" placeholder="输入城市/景点/游玩/主题"/></div>
       <router-link to="/city">
-        <div class="header-right">{{city}}<span class="arrow-icon">&#xe600;</span></div>
+        <div class="header-right">{{this.doubleCity}}<span class="arrow-icon">&#xe600;</span></div>
       </router-link>
     </div>
 </template>
 <script>
+import {mapState, mapGetters} from 'vuex'
 export default {
   name: 'HomeHeader',
-  props: {
-    city: String
+  computed: {
+    ...mapState(['city']),
+    ...mapGetters(['doubleCity'])
   }
 }
 </script>
@@ -47,7 +49,7 @@ export default {
         height:.64rem
         text-align:center
     .header-right
-      width:1.24rem;
+      padding:0 .1rem
       height:$headerHeight;
       text-align:center;
       color: #fff

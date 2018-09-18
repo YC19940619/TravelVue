@@ -4,7 +4,7 @@
            v-for="(item , key) of citys"
            :key="key"
            :ref="key"
-           @click="handleLetterClick"
+           @click="handleLetterClick(key)"
            @touchstart = "touchLetterStart"
            @touchmove = "touchLetterMove"
            @touchend = "touchLetterEnd"
@@ -32,8 +32,8 @@ export default {
     this.letterAtop = this.$refs['A'][0].offsetTop
   },
   methods: {
-    handleLetterClick (e) {
-      this.$emit('cityChange', e.target.innerText)
+    handleLetterClick (key) {
+      this.$emit('cityChange', key)
     },
     touchLetterStart (e) {
     },

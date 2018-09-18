@@ -1,6 +1,6 @@
 <template>
    <div>
-      <home-header :city="city"></home-header>
+      <home-header></home-header>
       <home-swiper :list="SwiperList"></home-swiper>
       <home-icons :list="IconsList"></home-icons>
       <home-recommend :list="RecommendList"></home-recommend>
@@ -19,11 +19,12 @@ export default {
   name: 'Home',
   data () {
     return {
-      city: '',
       SwiperList: [],
       IconsList: [],
       RecommendList: [],
-      WeekendList: []
+      WeekendList: [],
+      lastcity: '',
+      city: ''
     }
   },
   components: {
@@ -34,11 +35,18 @@ export default {
     HomeWeekend
   },
   mounted () {
+    this.lastcity = this.$store.state.city
     this.getHomeInfo()
+  },
+  activated () {
+    if (this.lastcity !== this.$store.state.city) {
+      this.lastcity = this.$store.state.city
+      this.getHomeInfo()
+    }
   },
   methods: {
     getHomeInfo () {
-      axios.get('/api/static/mock/mock.json').then(this.getHomeInfoSucc)
+      axios.get(`/api/static/mock/mock.json?city=${this.$store.state.city}`).then(this.getHomeInfoSucc)
     },
     getHomeInfoSucc (data) {
       if (data.data.ret && data.data.data) {
