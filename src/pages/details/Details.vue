@@ -12,6 +12,7 @@
       :gallaryImgs="gallaryImgs"
       v-show="gallaryShow">
     </common-gallary>
+    <details-list :categoryList="categoryList"></details-list>
     <div class="main"></div>
   </div>
 </template>
@@ -21,6 +22,7 @@ import axios from 'axios'
 import DetailsHeader from './components/Header'
 import DetailsBanner from './components/Banner'
 import CommonGallary from 'common/gallary/Gallary'
+import DetailsList from './components/List'
 export default {
   name: 'Details',
   data () {
@@ -28,13 +30,15 @@ export default {
       bannerImg: '',
       sightName: '',
       gallaryImgs: [],
-      gallaryShow: false
+      gallaryShow: false,
+      categoryList: []
     }
   },
   components: {
     DetailsHeader,
     DetailsBanner,
-    CommonGallary
+    CommonGallary,
+    DetailsList
   },
   mounted () {
     this.getDetailsInfo()
@@ -54,6 +58,7 @@ export default {
         this.bannerImg = data.bannerImg
         this.sightName = data.sightName
         this.gallaryImgs = data.gallaryImgs
+        this.categoryList = data.categoryList
       }
     },
     GallaryShow () {
