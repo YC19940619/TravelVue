@@ -7,11 +7,13 @@
       :gallaryImgs="gallaryImgs"
       @handleGallaryShow="GallaryShow"
     ></details-banner>
-    <common-gallary
-      @handleGallaryShow="GallaryHide"
-      :gallaryImgs="gallaryImgs"
-      v-show="gallaryShow">
-    </common-gallary>
+    <details-fade>
+      <common-gallary
+        @handleGallaryShow="GallaryHide"
+        :gallaryImgs="gallaryImgs"
+        v-show="gallaryShow">
+      </common-gallary>
+    </details-fade>
     <details-list :categoryList="categoryList"></details-list>
     <div class="main"></div>
   </div>
@@ -20,6 +22,7 @@
 <script>
 import axios from 'axios'
 import DetailsHeader from './components/Header'
+import DetailsFade from 'common/fade/Fade'
 import DetailsBanner from './components/Banner'
 import CommonGallary from 'common/gallary/Gallary'
 import DetailsList from './components/List'
@@ -38,7 +41,8 @@ export default {
     DetailsHeader,
     DetailsBanner,
     CommonGallary,
-    DetailsList
+    DetailsList,
+    DetailsFade
   },
   mounted () {
     this.getDetailsInfo()

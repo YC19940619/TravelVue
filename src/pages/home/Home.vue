@@ -14,7 +14,7 @@ import HomeSwiper from './components/Swiper'
 import HomeIcons from './components/Icons'
 import HomeRecommend from './components/Recommend'
 import HomeWeekend from './components/Weekend'
-import axios from 'axios'
+import HomeData from '../../../static/mock/mock'
 export default {
   name: 'Home',
   data () {
@@ -46,17 +46,16 @@ export default {
   },
   methods: {
     getHomeInfo () {
-      axios.get(`/api/static/mock/mock.json?city=${this.$store.state.city}`).then(this.getHomeInfoSucc)
+      this.getHomeInfoSucc(HomeData)
     },
     getHomeInfoSucc (data) {
-      if (data.data.ret && data.data.data) {
-        const homedata = data.data.data
-        this.city = homedata.city
-        this.SwiperList = homedata.swiperlist
-        this.IconsList = homedata.iconlist
-        this.RecommendList = homedata.recommendList
-        this.WeekendList = homedata.weekendList
-      }
+      console.log(data)
+      const homedata = data.data
+      this.city = homedata.city
+      this.SwiperList = homedata.swiperlist
+      this.IconsList = homedata.iconlist
+      this.RecommendList = homedata.recommendList
+      this.WeekendList = homedata.weekendList
     }
   }
 }
